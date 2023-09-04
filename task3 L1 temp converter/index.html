@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> temp converter by deeps</title>
+        <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    </head>
+
+  
+    <body>
+      <div class="conv">
+        <h2>temp converter</h2>
+  
+        <div class="wrap">
+          <div class="one">
+            <input type="number" id="t1" placeholder="enter the temp to convert" required>
+            <label for="i/t">input temp's unit?</label>
+            <select name="i/t" id="u1">
+              <option value="c">celcius</option>
+              <option value="f">fahrenheit</option>
+              <option value="k">kelvin</option>
+            </select>
+          </div>
+          
+          <div class="two">
+            <label for="i/t">output temp's unit?</label>
+            <select name="o/t" id="u2">
+              <option value="c">celcius</option>
+              <option value="f">fahrenheit</option>
+              <option value="k">kelvin</option>
+            </select>
+          </div>
+        </div>
+
+        <button id="get">convert!</button>
+        <div id="result"></div>
+      </div>
+
+    <script>
+      const clicked = document.getElementById('get');
+      const t1 = document.getElementById('t1');
+      const u1 = document.getElementById('u1');
+      const u2 = document.getElementById('u2');
+      const res = document.getElementById('result');
+
+      clicked.addEventListener('click', () => {
+        const temp = parseFloat(t1.value);
+
+        if (isNaN(temp)) {
+          res.textContent = 'please enter a valid number';
+          return;
+        }
+
+        const inputunit = u1.value;
+        const outputunit= u2.value;
+
+        if (inputunit === outputunit) {
+          res.textContent = 'Converted temperature is the same.';
+          return;
+        }
+
+        let convt;
+
+        if (inputunit === 'c') {
+          if (outputunit=== 'f') {
+            convt = (temp * 9/5) + 32;
+          } else if (outputunit=== 'k') {
+            convt = temp + 273.15;
+          }
+        } else if (inputunit === 'f') {
+          if (outputunit=== 'c') {
+            convt = (temp - 32) * 5/9;
+          } else if (outputunit=== 'k') {
+            convt = ((temp - 32) * 5/9) + 273.15;
+          }
+        } else if (inputunit === 'k') {
+          if (outputunit=== 'c') {
+            convt = temp - 273.15;
+          } else if (outputunit=== 'f') {
+            convt = ((temp - 273.15) * 9/5) + 32;
+          }
+        }
+
+        res.textContent = `Converted temperature: ${convt.toFixed(2)} ${outputunit}`;
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Cookie&display=swap');
+
+* {
+    font-family: 'Cookie', cursive;
+    font-size: x-large;
+    margin: 0;
+    padding: 0;
+    max-height: max-content;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+}
+
+body{
+    background-image: url('study.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.container {
+    max-width: 1000px;
+    color: #fc85af;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffdeea;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.colors{
+    border-top: 1px solid #fc85af;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #fc85af;
+    line-height: 50px;
+}
+
+h1 {
+    text-align: center;
+    color: #fc85af;
+    font-size: 30px;
+}
+
+.input-container {
+    margin-top: 50px;
+    font-size: 25px;
+    display: flex;
+    color: #fc85af;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.input-container input[type="text"],
+.input-container input[type="checkbox"],
+.input-container button {
+    margin-right: 10px;
+    color: #fc85af;
+    padding: 10px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.input-container button {
+    background-color: #fc85af;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+.input-container label {
+    background-color: #fc85af;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.task-list {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 90vw;
+}
+
+.task-list h2{
+    line-height: 40px;
+}
+
+.task-column {
+    flex-basis: 48%;
+    overflow-y: auto;
+    max-height: 200px;
+    padding: 10px;
+    border: 1px solid #ffdeea;
+    margin-right: 10px;
+}
+
+.task-column h2 {
+    color: #fc85af;
+    font-size: 30px;
+}
+
+ul {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+}
+
+.completed {
+    background-color: #fc85af;
+    text-decoration: line-through;
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>deepti's to-do list</title>
+        <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    </head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <div class="input-container">
+            <input type="text" id="task" placeholder="Enter task">
+            <input type="text" id="taskType" placeholder="Task type / additional details">
+            <label for="asap">ASAP? </label>
+            <input type="checkbox" id="asap">
+            <button id="addTask">Add Task</button>
+        </div>
+        <div class="colors">
+            <p>NOTE: all the tasks labelled asap appear in purple and the rest in blue</p>
+        </div>
+        <div class="task-list">
+
+            <h2>Incomplete Tasks</h2>
+            <ul id="incompleteTasks"></ul>
+            <h2>Completed Tasks</h2>
+            <ul id="completedTasks"></ul>
+
+
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const taskInput = document.getElementById("task");
+            const taskTypeInput = document.getElementById("taskType");
+            const asapCheckbox = document.getElementById("asap");
+            const addTaskButton = document.getElementById("addTask");
+            const incompleteTasksList = document.getElementById("incompleteTasks");
+            const completedTasksList = document.getElementById("completedTasks");
+
+            addTaskButton.addEventListener("click", function () {
+                const taskText = taskInput.value;
+                const taskType = taskTypeInput.value;
+                const isASAP = asapCheckbox.checked;
+
+                if (taskText.trim() === "") {
+                    alert("Please enter a task.");
+                    return;
+                }
+
+                const taskElement = document.createElement("li");
+                taskElement.innerHTML = `
+                    <input type="checkbox">
+                    <span>${taskText} [ ${taskType} ]</span>
+                    <button class="delete">delete</button>
+                `;
+
+
+
+                if (isASAP) {
+                    taskElement.style.backgroundColor = "#a89bde";
+                    taskElement.style.color = "#ffffff"
+                    taskElement.style.border= "none"
+
+                } else {
+                    taskElement.style.backgroundColor ="#a0bcf4";
+                    taskElement.style.color = "#ffffff";
+                    taskElement.style.border= "none"
+
+                }
+
+                const checkbox = taskElement.querySelector("input[type='checkbox']");
+                checkbox.addEventListener("change", function () {
+                    if (checkbox.checked) {
+                        taskElement.classList.add("completed");
+                        completedTasksList.appendChild(taskElement);
+                        incompleteTasksList.removeChild(taskElement);
+                    } else {
+                        taskElement.classList.remove("completed");
+                        incompleteTasksList.appendChild(taskElement);
+                        completedTasksList.removeChild(taskElement);
+                    }
+                });
+
+                const deleteButton = taskElement.querySelector(".delete");
+                deleteButton.style.backgroundColor = "#ffdeea";
+                deleteButton.style.color = "#fc85af";
+                deleteButton.style.marginLeft = "10px";
+                deleteButton.style.border = "none";
+                deleteButton.style.borderRadius = "5px";
+                deleteButton.addEventListener("click", function () {
+                    taskElement.remove();
+                });
+
+                if (isASAP) {
+                    incompleteTasksList.appendChild(taskElement);
+                } else {
+                    incompleteTasksList.appendChild(taskElement);
+                }
+
+                taskInput.value = "";
+                taskTypeInput.value = "";
+                asapCheckbox.checked = false;
+            });
+        });
+
+    </script>
+</body>
+</html>
